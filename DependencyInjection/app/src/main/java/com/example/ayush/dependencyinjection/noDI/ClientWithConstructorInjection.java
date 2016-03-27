@@ -1,10 +1,10 @@
-package com.example.ayush.dependencyinjection;
+package com.example.ayush.dependencyinjection.noDI;
 
 public class ClientWithConstructorInjection {
 
     private Service service;
 
-    ClientWithConstructorInjection(Service service) {
+    public ClientWithConstructorInjection(Service service) {
         this.service = service;
     }
 

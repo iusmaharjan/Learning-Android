@@ -1,4 +1,4 @@
-package com.example.ayush.dependencyinjection;
+package com.example.ayush.dependencyinjection.noDI;
 
 public class Service {
 

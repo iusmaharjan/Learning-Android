@@ -1,6 +1,5 @@
-package com.example.ayush.dependencyinjection;
+package com.example.ayush.dependencyinjection.constructorDI;
 
 public interface ClientInterface {
-
     public String greet();
 }

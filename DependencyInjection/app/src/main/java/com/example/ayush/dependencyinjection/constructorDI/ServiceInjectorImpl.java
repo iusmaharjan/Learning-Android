@@ -1,8 +1,8 @@
-package com.example.ayush.dependencyinjection;
+package com.example.ayush.dependencyinjection.constructorDI;
 
 public class ServiceInjectorImpl implements ServiceInjectorInterface{
     @Override
-    public ClientImpl getClient() {
+    public ClientInterface getClient() {
         return new ClientImpl(new ServiceImpl());
     }
 }

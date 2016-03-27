@@ -1,6 +1,11 @@
 package com.example.ayush.dependencyinjection;
 
-import org.junit.BeforeClass;
+import com.example.ayush.dependencyinjection.constructorDI.ClientInterface;
+import com.example.ayush.dependencyinjection.constructorDI.ServiceInjectorImpl;
+import com.example.ayush.dependencyinjection.noDI.ClientWithConstructorInjection;
+import com.example.ayush.dependencyinjection.noDI.ClientWithoutInjection;
+import com.example.ayush.dependencyinjection.noDI.Service;
+
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -28,7 +33,8 @@ public class DependencyInjectionTest {
     @Test
     public void testDependencyInjection() throws Exception {
         ServiceInjectorImpl serviceInjector = new ServiceInjectorImpl();
-        ClientImpl client = serviceInjector.getClient();
+        ClientInterface client = serviceInjector.getClient();
         System.out.println(client.greet());
     }
+
 }

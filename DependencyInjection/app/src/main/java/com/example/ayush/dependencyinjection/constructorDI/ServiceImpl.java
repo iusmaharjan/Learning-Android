@@ -1,4 +1,4 @@
-package com.example.ayush.dependencyinjection;
+package com.example.ayush.dependencyinjection.constructorDI;
 
 public class ServiceImpl implements ServiceInterface{
 
