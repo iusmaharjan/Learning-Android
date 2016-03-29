@@ -1,6 +1,7 @@
 package com.example.ayush.dependencyinjection.dagger;
 
-import com.example.ayush.dependencyinjection.MainActivity;
+import com.example.ayush.dependencyinjection.FragmentA;
+import com.example.ayush.dependencyinjection.FragmentB;
 
 import javax.inject.Singleton;
 
@@ -11,5 +12,6 @@ import dagger.Component;
         ApplicationModule.class
 } )
 public interface ApplicationComponent {
-    void inject(MainActivity mainActivity);
+    void inject(FragmentA fragmentA);
+    void inject(FragmentB fragmentB);
 }

@@ -2,7 +2,6 @@ package com.example.ayush.dependencyinjection;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +9,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import javax.inject.Inject;
+
 public class FragmentB extends Fragment implements View.OnClickListener {
-    private SharedPreferences mPreferences;
+
+    @Inject
+    SharedPreferences mPreferences;
+
     private TextView mTextStored;
     private Button mBtnRefresh;
 
@@ -21,7 +25,7 @@ public class FragmentB extends Fragment implements View.OnClickListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        ((App)getActivity().getApplication()).getApplicationComponent().inject(this);
     }
 
     @Override
