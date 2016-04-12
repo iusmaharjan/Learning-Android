@@ -7,8 +7,11 @@ import android.widget.TextView;
 
 import com.iusmaharjan.realm.model.Person;
 
+import io.realm.DynamicRealm;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
+import io.realm.RealmMigration;
+import io.realm.RealmSchema;
 import timber.log.Timber;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,13 +29,22 @@ public class MainActivity extends AppCompatActivity {
         rootLayout = ((LinearLayout)findViewById(R.id.container));
         rootLayout.removeAllViews();
 
-        realmConfig = new RealmConfiguration.Builder(this).build();
+        realmConfig = new RealmConfiguration.Builder(this).schemaVersion(1).migration(new RealmMigration() {
+            @Override
+            public void migrate(DynamicRealm realm, long oldVersion, long newVersion) {
+                RealmSchema schema = realm.getSchema();
+
+                if (oldVersion == 0) {
+                    schema.get("Person").addField("address", String.class);
+                }
+            }
+        }).build();
         realm = Realm.getInstance(realmConfig);
 
         createPerson(realm);
         readPerson(realm);
         updatePerson(realm);
-        deletePerson(realm);
+        //deletePerson(realm);
     }
 
     private void showStatus(String text) {
@@ -47,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         realm.beginTransaction();
         Person person = realm.createObject(Person.class);
         person.setName("Ayush Maharjan");
+        person.address = "Teku";
         person.setAge(23);
         realm.commitTransaction();
     }
@@ -55,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         showStatus("Reading Person...");
         realm.beginTransaction();
         Person person = realm.where(Person.class).findFirst();
-        showStatus(person.getName()+":"+person.getAge());
+        showStatus(person.getDetails());
         realm.commitTransaction();
     }
 

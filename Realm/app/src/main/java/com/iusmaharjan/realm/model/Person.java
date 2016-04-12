@@ -15,6 +15,12 @@ public class Person extends RealmObject {
     // Other objects in a one-to-one relation must also subclass RealmObject
     private Dog dog;
 
+    public String address;
+
+    public String getDetails() {
+        return name+":"+age;
+    }
+
     // One-to-many relations is simply a RealmList of the objects which also subclass RealmObject
     private RealmList<Cat> cats;
 
